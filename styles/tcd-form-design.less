@@ -1,0 +1,365 @@
+.CodeMirror{
+  height: 450px !important;
+}
+.el-upload__tip{
+  white-space: normal;
+}
+.el-radio-group{
+  white-space: normal;
+}
+li{
+  list-style: none;
+}
+::-webkit-scrollbar {
+  /*滚动条整体样式*/
+  width: 6px;
+  /*高宽分别对应横竖滚动条的尺寸*/
+  height               : 6px;
+  scrollbar-arrow-color: red;
+
+}
+
+::-webkit-scrollbar-thumb {
+  /*滚动条里面小方块*/
+  border-radius        : 5px;
+  box-shadow           : inset 0 0 5px rgba(0, 0, 0, 0.2);
+  background           : rgba(0, 0, 0, 0.2);
+  scrollbar-arrow-color: red;
+}
+
+::-webkit-scrollbar-track {
+  /*滚动条里面轨道*/
+  box-shadow   : inset 0 0 5px rgba(0, 0, 0, 0.2);
+  border-radius: 0;
+  background   : rgba(0, 0, 0, 0.1);
+}
+
+  #T-form-wrap{
+    position: relative;
+    max-width: 100%;
+    height: calc(100% - 60px);
+    min-width: 860px;
+    display: flex;
+    flex-direction: row;
+    min-height: 62vh;
+
+
+    .button-wrap{
+      //左侧待拖入展示控件
+      width: 300px;
+      min-width: 300px;
+      height: 100%;
+      .test{
+        width: 100%;
+
+        .control-button-title{
+          width: 100%;
+          height: 30px;
+          border-bottom: 3px solid #edeff1;
+          text-align: center;
+          font-size: 14px;
+          line-height: 30px;
+          color: black;
+          font-weight: 600;
+        }
+
+        .button-wrap-drg{
+          //控件栏拖拽区
+          padding: 0;
+          display: flex;
+          flex-direction: row;
+          flex-wrap: wrap;
+          justify-content: space-around;
+
+          li{
+            list-style: none;
+            text-align: left;
+            width: 40%;
+            display: inline-block;
+            line-height: 1;
+            white-space: nowrap;
+            cursor: pointer;
+            background: #fff;
+            border: 1px solid #dcdfe6;
+            color: #606266;
+            -webkit-appearance: none;
+            box-sizing: border-box;
+            outline: none;
+            margin: 0 0 6px 0;
+            transition: .1s;
+            font-weight: 500;
+            -moz-user-select: none;
+            -webkit-user-select: none;
+            -ms-user-select: none;
+            padding: 12px 20px 12px 6px;
+            font-size: 14px;
+            border-radius: 4px;
+          }
+
+        }
+      }
+
+
+
+    }
+
+    .T-form-main{
+      //中间展示层
+      position: relative;
+      flex: 1 0 auto;
+      border-right: 5px solid #edeff1;
+      border-left: 5px solid #edeff1;
+      height: 100%;
+      min-height: 72vh;
+
+      .form-enter-active {
+        transition: all .5s;
+      }
+
+      .form-leave-active {
+        transition: all .3s;
+      }
+
+      .form-enter,
+      .form-leave-to /* .list-leave-active for below version 2.1.8 */ {
+        opacity  : 0;
+        transform: translateX(100%);
+      }
+
+      .right-template-form{
+        //右侧控件属性
+        position: absolute;
+        width: 300px;
+        min-width: 300px;
+        top:33px;
+        height: calc(100% - 40px);
+        right: -305px;
+        background: white;
+        overflow-y: auto;
+        z-index: 999;
+
+        .el-divider--horizontal{
+          margin: 12px 0;
+        }
+        .shrink-button{
+          position: absolute;
+          padding: 8px;
+          right: 0;
+          top: 0;
+          z-index: 99999999999999;
+        }
+        .control-config-form{
+          width: 92%;
+          margin: 15px auto 0;
+
+
+        }
+      }
+
+      .content-top-button{
+        padding: 6px;
+        border-bottom: 5px solid #edeff1;
+        button{
+          margin: 0 5px;
+        }
+      }
+
+      .control-center-wrap{
+        height: calc(100% - 65px);
+
+        form{
+          height: 100%;
+          .wrapper{
+            width: 100%;
+            height: 100%;
+            overflow: auto ;
+            .moving{
+              position: relative;
+              //控件选择栏移动样式
+              &.moving::before{
+                content: '';
+                position: absolute;
+                top: 0;
+                width: 100%;
+                height: 5px;
+                background: #409eff;
+                display: block;
+              }
+            }
+            .list-main{
+              height: 100%;
+              min-height: 62vh;
+              overflow-y: auto;
+              .list-enter-active {
+                transition: all .5s;
+              }
+
+              .list-leave-active {
+                transition: all .3s;
+              }
+
+              .list-enter,
+              .list-leave-to /* .list-leave-active for below version 2.1.8 */ {
+                opacity  : 0;
+                transform: translateX(-100px);
+              }
+              .list-enter {
+                height: 30px;
+              }
+              .item-wrap:hover{
+                background: rgba(183,221,255,0.5);
+              }
+              .item-wrap{
+                position: relative;
+                padding: 16px 0;
+                &:hover{
+                  background: rgba(183,221,255,0.5);
+
+                }
+                &::before{
+                  content: '';
+                  display: block;
+                  position: absolute;
+                  top: 1px;
+                  height: 5px;
+                  right: 0;
+                  width: 1%;
+                  transition: width 0.5s;
+                }
+
+                &.active{
+                  background: rgba(183,221,255,0.5);
+                  &::before{
+                    width: 100%;
+                    background: #409eff;
+                  }
+                }
+                .delete{
+                  display: none;
+                }
+                .delete-active{
+                  position: absolute;
+                  top:4px;
+                  right: 0;
+                  padding: 7px 9px;
+                }
+                #control-key{
+                  position: absolute;
+                  padding: 0;
+                  margin: 0;
+                  height: 14px;
+                  font-size: 12px;
+                  color: black;
+                  line-height: 14px;
+                  right: 3px;
+                }
+                .grid-box{
+                  padding: 5px;
+                  background: #fadce6;
+                  .grid-box-dra{
+                    min-height: 60px;
+                  }
+                  .grid-item{
+                    min-height: 60px;
+                    border: 1px #ccc dashed;
+                  }
+                }
+
+                .childTable-layout{
+                  //子表布局
+                  background:#fadce6;
+                  .el-card__body{
+                    padding: 6px;
+                    .childTable-card-dra {
+                      min-height: 60px;
+                      width     : 100%;
+                      border    : 1px #ccc dashed;
+                      background: #fff;
+
+                      .childTable-main {
+                        min-height : 60px;
+                        position   : relative;
+                        border     : 1px #ccc dashed;
+                        overflow-x : auto;
+                        overflow-y : auto;
+                        white-space: nowrap;
+
+                        .gridMoving {
+                          // 拖放移动中
+                          width     : 175px;
+                          min-height: 94px;
+                          display   : inline-block;
+                          &.gridMoving::before{
+                            content: '';
+                            position: absolute;
+                            top: 0;
+                            min-width: 185px;
+                            height: 5px;
+                            background: #409eff;
+                            display: block;
+                          }
+                        }
+                        >div {
+                          min-width     : 185px;
+                          display       : inline-block;
+                          vertical-align: top;
+                        }
+                      }
+                    }
+                  }
+                }
+                .card-layout{
+                  background:#fadce6;
+
+                  .grid-card-dra{
+                    min-height: 60px;
+                  }
+                  .card-item{
+                    min-height: 60px;
+                  }
+                }
+                .el-form-item{
+                  width: 86%;
+                  margin: auto;
+                  white-space: nowrap;
+
+                  label{
+                    white-space: nowrap;
+                  }
+                }
+              }
+            }
+          }
+        }
+
+      }
+    }
+
+    .right-form-layout{
+      //右侧布局表单
+      width: 300px;
+      min-width: 300px;
+      overflow-y: auto;
+
+      .control-props{
+        width: 100%;
+        height: 30px;
+        border-bottom: 3px solid #edeff1;
+        text-align: center;
+        font-size: 14px;
+        line-height: 30px;
+        color: black;
+        font-weight: 600;
+
+      }
+      form{
+        .el-form-item{
+          margin-top: 15px;
+          white-space: nowrap;
+        }
+      }
+
+    }
+  }
+
+

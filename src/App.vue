@@ -1,32 +1,50 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+    <div id="app" style="height: 100vh;">
+        <el-row style="height: 100%">
+            <el-col :span="15" style="height: 100%">
+                <div
+                    style="height: 60px; background: #dbeeff; line-height: 60px;text-align: center; font-size: 30px"
+                >formDesign-TCD 表单设计器</div>
+                    <FormDesignTCD
+                        @save="handleSave"
+                    />
+            </el-col>
+            <el-col :span="9">
+                <div>
+                    <FormBuildTCD
+                        :options="data"
+                    />
+                </div>
+            </el-col>
+        </el-row>
     </div>
-    <router-view/>
-  </div>
 </template>
-
-<style lang="less">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
+<script>
+  export default {
+    name: "App",
+    data(){
+      return{
+        data: {
+          config: {
+            labelPosition: "top",
+            labelWidth: 15,
+            customWidth: ""
+          },
+          list: []
+        }
+      }
+    },
+    methods:{
+      handleSave(data){
+        this.data = data
+      }
     }
   }
-}
+</script>
+<style>
+  html,body{
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+  }
 </style>
