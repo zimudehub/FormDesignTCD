@@ -9,6 +9,7 @@
         :rules="rules"
       >
         <FinalForm
+          ref="a"
           v-for="(item, i) in formOptions.list"
           :item="item"
           :layout="formOptions.config"
@@ -16,6 +17,9 @@
           :formData="formData"
           :dynamicData="dynamicData"
           :childTableColumns="childTableColumns"
+          @clickFormButton="clickFormButton"
+          @onSuccess="(response, file, fileList)=>{$emit('onSuccess',response, file, fileList)}"
+          @beforeUpload="(file)=>{$emit('beforeUpload', file)}"
         />
       </el-form>
     </div>
@@ -61,28 +65,37 @@
                 formOptions: JSON.parse(JSON.stringify(this.options)),
                 formDataJsonView: false,
                 childTableColumns:[],//子表添加一行的数据
-                formData:{}
+                formData:{},
+                clearFormData:{}
             }
         },
         methods:{
-            handleSubmit(formName){
-                if (!this.formDataJsonView){
-                    this.$refs[formName].validate((valid) => {
+            clickFormButton(type){
+                if(type === "submit"){
+                    this.$refs.buildForm.validate((valid) => {
                         if (valid) {
-                            this.$message({
-                                showClose: true,
-                                message: `模拟提交成功`,
-                                type: 'success',
-                            })
+                          this.$emit('buildSubmit',this.formData);
+                          this.$message({
+                            showClose: true,
+                            message: `模拟提交成功`,
+                            type: 'success',
+                          })
                         } else {
-                            return false;
+                          return false;
                         }
                     })
+                }
+                if(type === "clear"){
+                  this.$refs.buildForm.resetFields();
                 }
             },
         },
         computed:{
             formDataMap(){
+              //判断是否有表单默认值传入,如果有传入则用默认值作为表单的联动数据
+              if(JSON.stringify(this.defaultValue)!=="{}"){
+                return JSON.stringify(this.defaultValue)
+              }
               //根据模板formOptions映射出formData给予form组件进行数据联动
               let duplicate = [];
               const mapFormData = (formData, array)=>{
@@ -104,6 +117,9 @@
                     if (item.type ==="number"||item.type ==="slider"){
                       duplicating(duplicate, item);
                       formData[item.model] = item.options.numberDefaultValue
+                    }else if (item.type === "uploadImg"){
+                      duplicating(duplicate, item);
+                      formData[item.model] = item.options.fileList
                     }else if (item.type === "checkbox"){
                       duplicating(duplicate, item);
                       formData[item.model] = item.options.checkboxDefaultValue
@@ -117,7 +133,7 @@
                       }
                     }else if (item.type === "uploadImg"||item.type === "uploadFile"){
                       duplicating(duplicate, item);
-                      formData[item.model] = item.options.uploadDefaultValue
+                      formData[item.model] = item.options.fileList
                     }else if (item.type === "switch"){
                       duplicating(duplicate, item);
                       formData[item.model] = item.options.switchValue

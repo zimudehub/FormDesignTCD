@@ -20,21 +20,23 @@
     </div>
 </template>
 <script>
-  export default {
-    name: "App",
-    data(){
-      return{
-        data: {
-          config: {
-            labelPosition: "top",
-            labelWidth: 15,
-            customWidth: ""
-          },
-          list: []
-        }
-      }
-    },
-    methods:{
+    import FormBuildTCD from "../object/formBuildTCD"
+    export default {
+      name: "App",
+      components:{FormBuildTCD},
+      data(){
+          return{
+            data: {
+              config: {
+                labelPosition: "top",
+                labelWidth: 15,
+                customWidth: ""
+              },
+              list: []
+            }
+          }
+        },
+      methods:{
       handleSave(data){
         this.data = data
       }

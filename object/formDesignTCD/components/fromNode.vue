@@ -76,7 +76,10 @@
         :max="item.options.chooseMax"
         :disabled="item.options.disabled"
       >
-        <el-checkbox v-for="(items, i) in item.options.options" :label="items.value" :key="i">{{items.label}}</el-checkbox>
+        <el-checkbox
+                v-for="(items, i) in item.options.options"
+                :label="items.value"
+                :key="i">{{items.label}}</el-checkbox>
       </el-checkbox-group>
       <el-radio-group
         v-if="item.type === 'radio'"
@@ -128,10 +131,8 @@
         :style="'width:'+item.options.width+'%'"
         class="upload-demo"
         :action="item.options.action"
-        :multiple="item.options.multiple"
         :limit="item.options.limit"
-        :disabled="item.options.disabled"
-        :file-list="item.options.uploadDefaultValue"
+        disabled
       >
         <el-button size="small" type="primary">{{ item.options.buttonText }}</el-button>
         <div slot="tip" class="el-upload__tip">{{ item.options.warnText }}</div>
@@ -139,10 +140,9 @@
       <el-upload
         v-if="item.type === 'uploadImg'"
         :action="item.options.action"
-        :multiple="item.options.multiple"
         :limit="item.options.limit"
         :list-type="item.options.listType"
-        :disabled="item.options.disabled"
+        disabled
       >
         <i class="el-icon-plus"></i>
       </el-upload>

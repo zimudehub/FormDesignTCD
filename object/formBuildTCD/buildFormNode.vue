@@ -18,6 +18,10 @@
               :layout="layout"
               :key="i"
               :formData="formData"
+              :childTableColumns="childTableColumns"
+              @clickFormButton="handleFormButton"
+              @onSuccess="(response, file, fileList)=>{$emit('onSuccess',response, file, fileList)}"
+              @beforeUpload="(file)=>{$emit('beforeUpload', file)}"
             />
           </el-col>
         </el-row>
@@ -168,29 +172,38 @@
               :placeholder="column.options.isChooseTimes==='2'?'':column.options.placeholder"
               :disabled="column.options.disabled"
             />
-            <el-upload
+            <UploadFile
+              v-model="formData[item.model][scope.$index][column.model]"
               v-if="column.type === 'uploadFile'"
+              :warnText="column.options.warnText"
+              :buttonText="column.options.buttonText"
               :style="'width:'+column.options.width+'%'"
-              class="upload-demo"
               :action="column.options.action"
               :multiple="column.options.multiple"
               :limit="column.options.limit"
               :disabled="column.options.disabled"
-              :file-list="column.options.uploadDefaultValue"
-            >
-              <el-button size="small" type="primary">{{ column.options.buttonText }}</el-button>
-              <div slot="tip" class="el-upload__tip">{{ column.options.warnText }}</div>
-            </el-upload>
-            <el-upload
-              v-if="column.type === 'uploadImg'"
-              :action="column.options.action"
-              :multiple="column.options.multiple"
-              :limit="column.options.limit"
               :list-type="column.options.listType"
+              :headers="column.options.headers?column.options.headers:{}"
+              :data="column.options.data?column.options.data:{}"
+              :name="column.options.name?column.options.name:''"
+              @onSuccess="(response, file, fileList)=>{$emit('onSuccess',response, file, fileList)}"
+              @beforeUpload="(file)=>{$emit('beforeUpload', file)}"
+            />
+            <UploadImg
+              v-model="formData[item.model][scope.$index][column.model]"
+              v-if="column.type === 'uploadImg'"
+              :style="'width:'+column.options.width+'%'"
+              :action="column.options.action"
+              :multiple="column.options.multiple"
+              :limit="column.options.limit"
               :disabled="column.options.disabled"
-            >
-              <i class="el-icon-plus"></i>
-            </el-upload>
+              :list-type="column.options.listType"
+              :headers="column.options.headers?column.options.headers:{}"
+              :data="column.options.data?column.options.data:{}"
+              :name="column.options.name?column.options.name:''"
+              @onSuccess="(response, file, fileList)=>{$emit('onSuccess',response, file, fileList)}"
+              @beforeUpload="(file)=>{$emit('beforeUpload', file)}"
+            />
             <el-switch
               v-model="formData[item.model][scope.$index][column.model]"
               v-if="column.type === 'switch'"
@@ -254,6 +267,10 @@
               :layout="layout"
               :key="i"
               :formData="formData"
+              :childTableColumns="childTableColumns"
+              @clickFormButton="handleFormButton"
+              @onSuccess="(response, file, fileList)=>{$emit('onSuccess',response, file, fileList)}"
+              @beforeUpload="(file)=>{$emit('beforeUpload', file)}"
             />
           </div>
         </el-card>
@@ -399,31 +416,39 @@
           :placeholder="item.options.isChooseTimes==='2'?'':item.options.placeholder"
           :disabled="item.options.disabled"
         />
-        <el-upload
+        <UploadFile
           v-model="formData[item.model]"
           v-if="item.type === 'uploadFile'"
+          :warnText="item.options.warnText"
+          :buttonText="item.options.buttonText"
           :style="'width:'+item.options.width+'%'"
-          class="upload-demo"
           :action="item.options.action"
           :multiple="item.options.multiple"
           :limit="item.options.limit"
           :disabled="item.options.disabled"
-          :file-list="item.options.uploadDefaultValue"
-        >
-          <el-button size="small" type="primary">{{ item.options.buttonText }}</el-button>
-          <div slot="tip" class="el-upload__tip">{{ item.options.warnText }}</div>
-        </el-upload>
-        <el-upload
+          :list-type="item.options.listType"
+          :headers="item.options.headers?item.options.headers:{}"
+          :data="item.options.data?item.options.data:{}"
+          :name="item.options.name?item.options.name:''"
+          @onSuccess="(response, file, fileList)=>{$emit('onSuccess',response, file, fileList)}"
+          @beforeUpload="(file)=>{$emit('beforeUpload', file)}"
+        />
+        <UploadImg
+          ref="b"
           v-model="formData[item.model]"
           v-if="item.type === 'uploadImg'"
+          :style="'width:'+item.options.width+'%'"
           :action="item.options.action"
           :multiple="item.options.multiple"
           :limit="item.options.limit"
-          :list-type="item.options.listType"
           :disabled="item.options.disabled"
-        >
-          <i class="el-icon-plus"></i>
-        </el-upload>
+          :list-type="item.options.listType"
+          :headers="item.options.headers?item.options.headers:{}"
+          :data="item.options.data?item.options.data:{}"
+          :name="item.options.name?item.options.name:''"
+          @onSuccess="(response, file, fileList)=>{$emit('onSuccess',response, file, fileList)}"
+          @beforeUpload="(file)=>{$emit('beforeUpload', file)}"
+        />
         <div
           v-if="item.type === 'super'"
         >
@@ -476,6 +501,7 @@
           :type="item.options.buttonType"
           :disabled="item.options.disabled"
           :style="'margin-left:'+ item.options.width + '%'"
+          @click="handleFormButton(item.options.handle)"
         >{{item.label}}</el-button>
       </el-form-item>
     </template>
@@ -483,8 +509,11 @@
 </template>
 
 <script>
+    import UploadImg from "../formDesignTCD/components/uploadImg"
+    import UploadFile from "../formDesignTCD/components/uploadFile"
     export default {
         name: "FinalForm",
+        components:{UploadImg,UploadFile},
         props:{
             typeList:{
                 type: Array,
@@ -521,9 +550,6 @@
                 required: true
             }
         },
-        created(){
-
-        },
         data(){
             return{
 
@@ -536,6 +562,9 @@
             },
         },
         methods:{
+            handleFormButton(type){
+              this.$emit("clickFormButton", type)
+            },
             handleAdd(index,array, model){
                 //操作子表添加一行
                 let item = {};

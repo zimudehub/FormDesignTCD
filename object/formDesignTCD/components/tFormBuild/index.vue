@@ -21,6 +21,7 @@
             :formData="formData"
             :dynamicData="dynamicData"
             :childTableColumns="childTableColumns"
+            @onSuccess="(response, file, fileList)=>{$emit('onSuccess',response, file, fileList)}"
           />
         </el-form>
       </div>
@@ -118,7 +119,7 @@
                            }
                        }else if (item.type === "uploadImg"||item.type === "uploadFile"){
                            duplicating(duplicate, item);
-                           formData[item.model] = item.options.uploadDefaultValue
+                           formData[item.model] = item.options.fileList
                        }else if (item.type === "switch"){
                            duplicating(duplicate, item);
                            formData[item.model] = item.options.switchValue

@@ -8,6 +8,11 @@ import "../styles/tcd-form-design.less";
 import FormDesignTCD from "./formDesignTCD"
 import FormBuildTCD from "./formBuildTCD"
 
+import {
+    baseList,
+    layoutList
+} from "./formDesignTCD/baseConfig"
+
 let components = [FormDesignTCD, FormBuildTCD];
 
 let install = function (Vue) {
@@ -25,6 +30,36 @@ if (typeof window !== "undefined" && window.Vue) {
     install(window.Vue);
 }
 
+function setDesignConfig(config) {
+    //全局前置函数配置formDesignTCD设计器
+    if (Object.prototype.toString.call(config)!=="[object Object]"){
+        throw "[formDesignTCD warn] Function setDesignConfig argument is not object"
+    }
+    baseList.forEach((item)=>{
+        if(config[item.type]){
+            item.options = {
+                ...item.options,
+                ...config[item.type]
+            }
+        }
+    });
+}
+
+function serBuildConfig(buildArray,config) {
+    //配置formBuildTCD解析器,配置不同表单
+    if (Object.prototype.toString.call(config)!=="[object Object]"&&Object.prototype.toString.call(buildArray)!=="[object Array]"){
+        throw "[formDesignTCD warn] Function setBuildConfig arguments type error"
+    }
+    buildArray.forEach((item)=>{
+        if(config[item.type]){
+            item.options = {
+                ...item.options,
+                ...config[item.type]
+            }
+        }
+    })
+}
+
 //可以导入FormDesignTCD提供的单个组件,如果在项目中只需要使用FormDesignTCD的单个组件
 export {
     FormDesignTCD,
@@ -32,7 +67,9 @@ export {
 }
 
 export default {
-    install
+    install,
+    setDesignConfig,
+    serBuildConfig
 }
 
 

@@ -165,7 +165,7 @@ export const baseList=[
     options: {
       disabled: false, //是否禁用
       checkboxDefaultValue: [],
-      chooseMin:1,
+      chooseMin:0,
       chooseMax:3,
       dynamicKey: "",
       dynamic: false,
@@ -281,10 +281,9 @@ export const baseList=[
     icon: "el-icon-upload2",//图标
     label: "上传文件",
     options: {
-      uploadDefaultValue: [],
+      fileList:[],
       multiple: true,
       disabled: false,
-      drag: false,
       width: 100,
       limit: 3,
       buttonText:"点击上传",
@@ -306,15 +305,13 @@ export const baseList=[
     icon: "el-icon-picture-outline",//图标
     label: "上传图片",
     options: {
-      uploadDefaultValue: "",
+      fileList:[],
       multiple: true,
       disabled: false,
       width: 100,
       limit: 3,
-      action: "https://jsonplaceholder.typicode.com/posts/",
+      action: "http://cdn.kcz66.com/uploadFile.txt",
       listType: "picture-card",
-      dialogVisible:false,
-      dialogImageUrl:""
     },
     model: "",
     key: "",

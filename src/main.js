@@ -4,6 +4,12 @@ import router from './router'
 import store from './store'
 import FormDesign from '../object'
 
+FormDesign.setDesignConfig({
+  uploadImg:{
+    headers:{"auuu":"auuu"},
+    data:{wo:123}
+  }
+});
 Vue.use(FormDesign);
 
 Vue.config.productionTip = false;
