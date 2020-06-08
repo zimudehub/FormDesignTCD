@@ -254,6 +254,13 @@
                         if(child.type === "card"){
                             putItem(child.list)
                         }
+                        if(child.type === "table"){
+                            child.trs.forEach((trsObj)=>{
+                                trsObj.tds.forEach((tds)=>{
+                                    putItem(tds.list)
+                                })
+                            })
+                        }
                         if (child.type === "childTable"){
                             child.list.forEach((items,i)=>{
                                 if (this.childTableBans.includes(item.type)){
@@ -290,6 +297,13 @@
                         }
                         if(child.type === "childTable"){
                             delItem(child.list)
+                        }
+                        if(child.type === "table"){
+                            child.trs.forEach((trsObj)=>{
+                                trsObj.tds.forEach((tds)=>{
+                                    delItem(tds.list)
+                                })
+                            })
                         }
                         if (child.key === this.selectItem.key){
                             array.splice(i,1);

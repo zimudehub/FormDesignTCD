@@ -13,7 +13,7 @@
 <!--    customStyle: ""-->
 <!--    }-->
 
-    <el-form-item label="表单布局">
+    <el-form-item label="label位置">
       <el-radio-group v-model="layoutData.labelPosition" size="small">
         <el-radio-button label="right">right</el-radio-button>
         <el-radio-button label="left">left</el-radio-button>
@@ -21,11 +21,11 @@
       </el-radio-group>
     </el-form-item>
     <el-divider v-if="layoutData.labelPosition==='right'||layoutData.labelPosition==='left'"></el-divider>
-    <el-form-item label="label宽度(%)">
+    <el-form-item v-if="layoutData.labelPosition==='right'||layoutData.labelPosition==='left'" label="label宽度(%)">
       <el-slider
         v-model="layoutData.labelWidth"
         :max="80"
-        :min="2"
+        :min="0"
       />
     </el-form-item>
     <el-divider></el-divider>

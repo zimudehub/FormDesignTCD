@@ -13,6 +13,7 @@
                 <div>
                     <FormBuildTCD
                         :options="data"
+                        :dynamicData="dynamicData"
                     />
                 </div>
             </el-col>
@@ -26,6 +27,30 @@
       components:{FormBuildTCD},
       data(){
           return{
+            dynamicData:{
+                a:[
+                    {
+                        value: "1",
+                        label: "选项1",
+                        children: [
+                            {
+                                value: "11",
+                                label: "老谭"
+                            }
+                        ]
+                    },
+                    {
+                        value: "2",
+                        label: "选项2",
+                        children: [
+                            {
+                                value: "22",
+                                label: "选项22"
+                            }
+                        ]
+                    }
+                ]
+            },
             data: {
               config: {
                 labelPosition: "top",

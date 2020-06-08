@@ -149,6 +149,13 @@
                    }else if (item.type === "card"){
                        //处理卡片布局
                        mapFormData(formData, item.list)
+                   }else if (item.type === "table"){
+                     //处理卡片布局
+                     item.trs.forEach((tr)=>{
+                       tr.tds.forEach((td)=>{
+                         mapFormData(formData, td.list)
+                       })
+                     })
                    }
                 });
                 return formData
@@ -190,6 +197,13 @@
                         })
                     }else if (child.type === "card"){
                         mapRules(rules, child.list)
+                    }else if (child.type === "table"){
+                      //处理卡片布局
+                      child.trs.forEach((tr)=>{
+                        tr.tds.forEach((td)=>{
+                          mapRules(rules, td.list)
+                        })
+                      })
                     }
                 });
                 return rules

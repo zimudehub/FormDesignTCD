@@ -264,7 +264,37 @@ li{
                     border: 1px #ccc dashed;
                   }
                 }
-
+                .table-rightClick-wrap{
+                  padding: 0;
+                  margin: 0;
+                  position: fixed;
+                  top: 0;
+                  left: 0;
+                  background: #ffffff;
+                  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.3);
+                  z-index: 99999999999;
+                  &>li{
+                    padding: 8px;
+                  }
+                  &>li:hover{
+                    background: #d6d8df;
+                  }
+                }
+                .table-layout{
+                  //表格布局
+                  background: #fadce6;
+                  width: calc(100% - 10px);
+                  td{
+                    vertical-align: top;
+                  }
+                  .table-dra{
+                    min-height: 60px;
+                    .table-item{
+                      min-height: 60px;
+                      min-width: 40px;
+                    }
+                  }
+                }
                 .childTable-layout{
                   //子表布局
                   background:#fadce6;

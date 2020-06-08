@@ -1,5 +1,35 @@
 <template>
   <div>
+    <!--    表格布局-->
+    <template v-if="item.type === 'table'">
+      <table border="1" style="border-collapse: collapse;" class="form-build-table">
+        <tbody>
+          <tr v-for="(tr,tri) in item.trs" :key="tri">
+            <td
+              v-for="(td,tdi) in tr.tds"
+              :key="tdi"
+              :width="100/(tr.tds.length)+'%'"
+              :colspan="td.colspan"
+              :rowspan="td.rowspan"
+            >
+              <FinalForm
+                v-for="(item, i) in td.list"
+                :item="item"
+                :dynamicData="dynamicData"
+                :layout="layout"
+                :key="i"
+                :formData="formData"
+                :childTableColumns="childTableColumns"
+                @clickFormButton="handleFormButton"
+                @onSuccess="(response, file, fileList)=>{$emit('onSuccess',response, file, fileList)}"
+                @beforeUpload="(file)=>{$emit('beforeUpload', file)}"
+              />
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </template>
+    <!--    表格布局结束-->
     <!--    格栅布局-->
     <template v-if="item.type ==='grid'">
       <div class="form-build-grid">
@@ -355,8 +385,7 @@
           v-model="formData[item.model]"
           v-if="item.type === 'checkbox'"
           :defaultValue="item.options.checkboxDefaultValue"
-          :min="item.options.chooseMin"
-          :max="item.options.chooseMax"
+
           :disabled="item.options.disabled"
         >
           <el-checkbox

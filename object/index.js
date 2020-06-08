@@ -45,19 +45,31 @@ function setDesignConfig(config) {
     });
 }
 
-function serBuildConfig(buildArray,config) {
+function serBuildConfig(buildArray, config, model = undefined) {
     //配置formBuildTCD解析器,配置不同表单
     if (Object.prototype.toString.call(config)!=="[object Object]"&&Object.prototype.toString.call(buildArray)!=="[object Array]"){
         throw "[formDesignTCD warn] Function setBuildConfig arguments type error"
     }
-    buildArray.forEach((item)=>{
-        if(config[item.type]){
-            item.options = {
-                ...item.options,
-                ...config[item.type]
+    if (model){
+        //如果传入model则只修改对应model字段的控件,否则所有类型的控件都会被修改
+        buildArray.forEach((item)=>{
+            if(config[item.type]&&item.model === model){
+                item.options = {
+                    ...item.options,
+                    ...config[item.type]
+                }
             }
-        }
-    })
+        })
+    }else {
+        buildArray.forEach((item)=>{
+            if(config[item.type]){
+                item.options = {
+                    ...item.options,
+                    ...config[item.type]
+                }
+            }
+        })
+    }
 }
 
 //可以导入FormDesignTCD提供的单个组件,如果在项目中只需要使用FormDesignTCD的单个组件
