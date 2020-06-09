@@ -78,12 +78,6 @@
                     this.$refs.buildForm.validate((valid) => {
                         if (valid) {
                           this.$emit('buildSubmit',this.formData);
-                          this.$message({
-                            showClose: true,
-                            message: `模拟提交成功`,
-                            type: 'success',
-                          });
-                          console.log(this.formData)
                         } else {
                           return false;
                         }

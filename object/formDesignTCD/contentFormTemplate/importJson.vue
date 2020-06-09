@@ -10,8 +10,8 @@
 
 <script>
   import { codemirror } from 'vue-codemirror-lite'
-  import('codemirror/mode/javascript/javascript');
-  import('codemirror/mode/vue/vue');
+  import 'codemirror/mode/javascript/javascript';
+  import 'codemirror/mode/vue/vue';
     export default {
         name: "ImportJson",
         components:{codemirror},

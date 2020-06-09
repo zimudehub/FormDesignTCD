@@ -168,13 +168,13 @@
       <el-dialog :visible.sync="item.options.dialogVisible"  v-if="item.type === 'uploadImg'">
         <img width="100%" :src="item.options.dialogImageUrl" alt="">
       </el-dialog>
-      <TMKeditor
-        v-if="item.type==='tMKeditor'"
-        ref="KEditor"
-        :style="`width:${item.options.width}%`"
-        :record="item"
-        :disabled="true"
-      />
+<!--      <TMKeditor-->
+<!--        v-if="item.type==='tMKeditor'"-->
+<!--        ref="KEditor"-->
+<!--        :style="`width:${item.options.width}%`"-->
+<!--        :record="item"-->
+<!--        :disabled="true"-->
+<!--      />-->
       <el-switch
         v-if="item.type === 'switch'"
         v-model="item.options.switchValue"
@@ -212,7 +212,7 @@
   import TMKeditor from './tMkeditor'
     export default {
         name: "formNode",
-        components:{TMKeditor, },
+        // components:{TMKeditor, },
         props:{
             typeList:{
                 type: Array,

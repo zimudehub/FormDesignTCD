@@ -1,11 +1,23 @@
 {
   "name": "form-design-tcd",
-  "version": "0.1.0",
-  "private": true,
+  "version": "0.0.2",
+  "private": false,
+  "description": "基于 elementui 的vue表单设计器",
+  "main": "lib/FormDesignTCD.umd.min.js",
+  "author": "子沐",
+  "keyword": [
+    "element-ui",
+    "OA系统",
+    "FormDesignTCD",
+    "表单设计器",
+    "拖拽",
+    "工作流"
+  ],
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "lib": "vue-cli-service build --target lib --name form-design-tcd --dest lib object/index.js"
   },
   "dependencies": {
     "babel-polyfill": "^6.26.0",

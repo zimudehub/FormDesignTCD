@@ -340,12 +340,15 @@
               this.$refs.addRow.onclick = ()=>{
                 //增加一行
                 ( () =>{
-                  const cells = this.$refs.FDTCDtable.rows.item(0).cells.length;
-                  let rows = (new Array(cells)).fill({
-                    colspan: 1,
-                    rowspan: 1,
-                    list: []
-                  });
+                  const cells = table[0].tds.reduce((pre,cur)=>pre+cur.colspan,0);
+                  let rows = [];
+                  for (let i =0; i<cells; i++){
+                    rows.push({
+                      colspan: 1,
+                      rowspan: 1,
+                      list: []
+                    })
+                  }
                   table.push({
                     tds: rows
                   })

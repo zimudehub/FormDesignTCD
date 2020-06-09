@@ -1,7 +1,7 @@
 <template>
     <div id="app" style="height: 100vh;">
         <el-row style="height: 100%">
-            <el-col :span="15" style="height: 100%">
+            <el-col :span="24" style="height: 100%">
                 <div
                     style="height: 60px; background: #dbeeff; line-height: 60px;text-align: center; font-size: 30px"
                 >formDesign-TCD 表单设计器</div>
@@ -9,22 +9,22 @@
                         @save="handleSave"
                     />
             </el-col>
-            <el-col :span="9">
-                <div>
-                    <FormBuildTCD
-                        :options="data"
-                        :dynamicData="dynamicData"
-                    />
-                </div>
-            </el-col>
+<!--            <el-col :span="9">-->
+<!--                <div>-->
+<!--                    <FormBuildTCD-->
+<!--                        :options="data"-->
+<!--                        :dynamicData="dynamicData"-->
+<!--                    />-->
+<!--                </div>-->
+<!--            </el-col>-->
         </el-row>
     </div>
 </template>
 <script>
-    import FormBuildTCD from "../object/formBuildTCD"
+    // import FormBuildTCD from "../object/formBuildTCD"
     export default {
       name: "App",
-      components:{FormBuildTCD},
+      // components:{FormBuildTCD},
       data(){
           return{
             dynamicData:{
@@ -35,7 +35,7 @@
                         children: [
                             {
                                 value: "11",
-                                label: "老谭"
+                                label: "tanxiansheng"
                             }
                         ]
                     },

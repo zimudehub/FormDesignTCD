@@ -3,6 +3,7 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import FormDesign from '../object'
+import FormBuildTCD from '../object/formBuildTCD'
 
 FormDesign.setDesignConfig({
   uploadImg:{

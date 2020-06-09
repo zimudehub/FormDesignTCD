@@ -60,18 +60,18 @@
     export default {
         name: "FormDesignTCD",
         components: {ControlList, ContentFormTemplate, LayoutForm, TFormControlConfig, TopButton},
-        mounted(){
-            //这里的代码为富文本编辑器服务,因为布局关系会导致富文本编辑器被拖入的时候造成页面被撑开,这里做监听
-            this.$refs.contentWrap.style.width = this.$refs.allWrap.scrollWidth-640+"px";
-            addEventListener('resize',()=>{
-                this.$refs.contentWrap.style.width = this.$refs.allWrap.scrollWidth-640+"px"
-            })
-        },
-        destroyed(){
-            removeEventListener('resize',()=>{
-                this.$refs.contentWrap.style.width = this.$refs.allWrap.scrollWidth-640+"px"
-            })
-        },
+        // mounted(){
+        //     //这里的代码为富文本编辑器服务,因为布局关系会导致富文本编辑器被拖入的时候造成页面被撑开,这里做监听
+        //     this.$refs.contentWrap.style.width = this.$refs.allWrap.scrollWidth-640+"px";
+        //     addEventListener('resize',()=>{
+        //         this.$refs.contentWrap.style.width = this.$refs.allWrap.scrollWidth-640+"px"
+        //     })
+        // },
+        // destroyed(){
+        //     removeEventListener('resize',()=>{
+        //         this.$refs.contentWrap.style.width = this.$refs.allWrap.scrollWidth-640+"px"
+        //     })
+        // },
         props: {
             defaultValue:{
                 type: Object,

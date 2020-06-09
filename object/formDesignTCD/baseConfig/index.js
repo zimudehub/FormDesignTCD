@@ -421,29 +421,29 @@ export const baseList=[
       url:"",//跳转连接
     },
   },
-  {
-    type: "tMKeditor",//控件类型
-    icon: "el-icon-s-grid",//图标
-    label: "富文本",
-    list: [],
-    options: {
-      height: 3,
-      placeholder: "请dada",
-      chinesization: true,
-      hidden: false, // 是否隐藏，false显示，true隐藏
-      disabled: false,
-      showLabel: false,
-      width: 100
-    },
-    model: "",
-    key: "",
-    rules: [
-      {
-        required: false,
-        message: "必填项"
-      }
-    ]
-  },
+  // {
+  //   type: "tMKeditor",//控件类型
+  //   icon: "el-icon-s-grid",//图标
+  //   label: "富文本",
+  //   list: [],
+  //   options: {
+  //     height: 3,
+  //     placeholder: "请dada",
+  //     chinesization: true,
+  //     hidden: false, // 是否隐藏，false显示，true隐藏
+  //     disabled: false,
+  //     showLabel: false,
+  //     width: 100
+  //   },
+  //   model: "",
+  //   key: "",
+  //   rules: [
+  //     {
+  //       required: false,
+  //       message: "必填项"
+  //     }
+  //   ]
+  // },
 ];
 //布局控件
 export const layoutList = [

@@ -1,23 +1,13 @@
 # form-design-tcd
 
-## Project setup
+## 安装
 ```
-yarn install
-```
-
-### Compiles and hot-reloads for development
-```
-yarn serve
+npm i FormDesignTCD -s
 ```
 
-### Compiles and minifies for production
+## 使用
 ```
-yarn build
-```
-
-### Lints and fixes files
-```
-yarn lint
+im
 ```
 
 ### Customize configuration
