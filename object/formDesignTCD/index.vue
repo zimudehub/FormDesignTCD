@@ -80,7 +80,7 @@
                         config: {
                             labelPosition: "top",
                                 labelWidth: 15,
-                                customWidth: ""
+                                // customWidth: ""
                         },
                         list: []
                     }

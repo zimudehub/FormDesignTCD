@@ -4,7 +4,10 @@ import "@babel/polyfill";
 //导入element
 import "./eleComponents/index.js";
 //导入FormDesignTCD样式
+import 'codemirror/mode/javascript/javascript';
+import 'codemirror/mode/vue/vue';
 import "../styles/tcd-form-design.less";
+import "../styles/T-Form-build.less";
 import FormDesignTCD from "./formDesignTCD"
 import FormBuildTCD from "./formBuildTCD"
 

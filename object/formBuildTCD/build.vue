@@ -28,7 +28,6 @@
 
 <script>
     import FinalForm from "./buildFormNode"
-    import "../../styles/T-Form-build.less"
     export default {
         name: "FormBuildTCD",
         components:{FinalForm},

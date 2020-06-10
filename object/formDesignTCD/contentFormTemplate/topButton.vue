@@ -34,9 +34,6 @@
         :json="JSON.stringify(data, null, '\t')"
       />
     </el-dialog>
-    <el-tooltip class="item" effect="dark" content="生成Html" placement="top-start">
-      <el-button icon="el-icon-document" circle size="mini"/>
-    </el-tooltip>
     <el-tooltip class="item" effect="dark" content="清空" placement="top-start">
       <el-button icon="el-icon-delete" circle size="mini" @click="deleteAll"/>
     </el-tooltip>

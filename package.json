@@ -1,9 +1,9 @@
 {
   "name": "form-design-tcd",
-  "version": "0.0.2",
+  "version": "0.0.5",
   "private": false,
-  "description": "基于 elementui 的vue表单设计器",
-  "main": "lib/FormDesignTCD.umd.min.js",
+  "description": "基于element-ui的vue表单设计器",
+  "main": "lib/form-design-tcd.umd.min.js",
   "author": "子沐",
   "keyword": [
     "element-ui",
