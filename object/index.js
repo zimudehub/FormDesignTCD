@@ -56,22 +56,54 @@ function serBuildConfig(buildArray, config, model = undefined) {
     if (model){
         //如果传入model则只修改对应model字段的控件,否则所有类型的控件都会被修改
         buildArray.forEach((item)=>{
-            if(config[item.type]&&item.model === model){
-                item.options = {
-                    ...item.options,
-                    ...config[item.type]
+            if(item.type === "card"){
+                serBuildConfig(item.list, config, model)
+            }else if(item.type === "grid"){
+                item.columns.forEach((column)=>{
+                    serBuildConfig(column.list, config, model)
+                })
+            }else if (item.type === "table"){
+                item.trs.forEach((tr)=>{
+                    tr.tds.forEach((td)=>{
+                        serBuildConfig(td.list, config, model)
+                    })
+                })
+            }else if (item.type === "childTable"){
+                serBuildConfig(item.list, config, model)
+            }else {
+                if(config[item.type]&&item.model === model){
+                    item.options = {
+                        ...item.options,
+                        ...config[item.type]
+                    }
                 }
             }
         })
     }else {
         buildArray.forEach((item)=>{
-            if(config[item.type]){
-                item.options = {
-                    ...item.options,
-                    ...config[item.type]
+            if(item.type === "card"){
+                serBuildConfig(item.list, config, model)
+            }else if(item.type === "grid"){
+                item.columns.forEach((column)=>{
+                    serBuildConfig(column.list, config, model)
+                })
+            }else if (item.type === "table"){
+                item.trs.forEach((tr)=>{
+                    tr.tds.forEach((td)=>{
+                        serBuildConfig(td.list, config, model)
+                    })
+                })
+            }else if (item.type === "childTable"){
+                serBuildConfig(item.list, config, model)
+            }else {
+                if(config[item.type]){
+                    item.options = {
+                        ...item.options,
+                        ...config[item.type]
+                    }
                 }
             }
-        })
+        });
     }
 }
 

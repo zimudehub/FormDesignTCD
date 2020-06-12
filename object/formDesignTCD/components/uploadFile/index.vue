@@ -2,6 +2,7 @@
     <el-upload
             :action="action"
             :list-type="listType"
+            :ref="'uploadFile'"
             :on-preview="handlePictureCardPreview"
             :on-remove="handleRemove"
             :on-success="handleOnSuccess"
@@ -50,10 +51,12 @@
         watch:{
             value:{
                 handler(newValue){
+                    if(newValue.length === 0){
+                        this.$refs.uploadFile.clearFiles()
+                    }
                     //监听value,变化时让fileList也变化
-                    this.fileList = newValue
+                    this.fileList = newValue;
                 },
-                immediate: true,
                 deep:true
             },
 
