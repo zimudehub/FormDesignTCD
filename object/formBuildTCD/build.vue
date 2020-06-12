@@ -18,8 +18,8 @@
           :dynamicData="dynamicData"
           :childTableColumns="childTableColumns"
           @clickFormButton="clickFormButton"
-          @onSuccess="(response, file, fileList)=>{$emit('onSuccess',response, file, fileList)}"
-          @beforeUpload="(file)=>{$emit('beforeUpload', file)}"
+          @onSuccess="(response, file, fileList, model)=>{$emit('onSuccess',response, file, fileList,model)}"
+          @beforeUpload="(file, model)=>{$emit('beforeUpload', file,model)}"
         />
       </el-form>
     </div>
@@ -46,6 +46,12 @@
             }
         },
         watch:{
+          defaultValue:{
+            handler(newValue){
+              this.formData = newValue
+            },
+            deep:true
+          },
           options:{
             handler(newValue){
               //当传入数据改变时,formDesignTCD会基于传入数据的克隆副本做一系列改变,formDesignTCD的数据流是单向的,不管传入的是引用类型还是普通类型
@@ -72,6 +78,9 @@
           this.rulesMap()
         },
         methods:{
+            getFormData(){
+              return this.formData
+            },
             clickFormButton(type){
                 if(type === "submit"){
                     this.$refs.buildForm.validate((valid) => {
@@ -87,8 +96,9 @@
                 }
             },
             formDataMap(){
-              if (JSON.stringify(this.defaultValue !== "{}")){
-                this.formData = JSON.parse(JSON.stringify(this.defaultValue))
+              if (JSON.stringify(this.defaultValue ) !== "{}"){
+                this.formData = JSON.parse(JSON.stringify(this.defaultValue));
+                return
               }
               let duplicate = [];
               const mapFormData = (formData, array)=>{

@@ -78,7 +78,9 @@ function serBuildConfig(buildArray, config, model = undefined) {
 //可以导入FormDesignTCD提供的单个组件,如果在项目中只需要使用FormDesignTCD的单个组件
 export {
     FormDesignTCD,
-    FormBuildTCD
+    FormBuildTCD,
+    setDesignConfig,
+    serBuildConfig
 }
 
 export default {

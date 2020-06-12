@@ -205,6 +205,9 @@
             }
         },
         methods: {
+            setDesignData(data){
+                this.data = data
+            },
             save(){
                 //保存按钮,传出formDesignTCD中的data克隆副本
                 this.$emit('save',JSON.parse(JSON.stringify(this.data)))

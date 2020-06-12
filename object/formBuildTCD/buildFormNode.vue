@@ -21,8 +21,8 @@
                 :formData="formData"
                 :childTableColumns="childTableColumns"
                 @clickFormButton="handleFormButton"
-                @onSuccess="(response, file, fileList)=>{$emit('onSuccess',response, file, fileList)}"
-                @beforeUpload="(file)=>{$emit('beforeUpload', file)}"
+                @onSuccess="(response, file, fileList)=>{const model= item.model; $emit('onSuccess',response, file, fileList, model)}"
+                @beforeUpload="(file)=>{const model= item.model;$emit('beforeUpload', file, model)}"
               />
             </td>
           </tr>
@@ -50,8 +50,8 @@
               :formData="formData"
               :childTableColumns="childTableColumns"
               @clickFormButton="handleFormButton"
-              @onSuccess="(response, file, fileList)=>{$emit('onSuccess',response, file, fileList)}"
-              @beforeUpload="(file)=>{$emit('beforeUpload', file)}"
+              @onSuccess="(response, file, fileList)=>{const model= item.model; $emit('onSuccess',response, file, fileList, model)}"
+              @beforeUpload="(file)=>{const model= item.model;$emit('beforeUpload', file, model)}"
             />
           </el-col>
         </el-row>
@@ -216,8 +216,8 @@
               :headers="column.options.headers?column.options.headers:{}"
               :data="column.options.data?column.options.data:{}"
               :name="column.options.name?column.options.name:''"
-              @onSuccess="(response, file, fileList)=>{$emit('onSuccess',response, file, fileList)}"
-              @beforeUpload="(file)=>{$emit('beforeUpload', file)}"
+              @onSuccess="(response, file, fileList)=>{const model= column.model; $emit('onSuccess',response, file, fileList, model)}"
+              @beforeUpload="(file)=>{const model= column.model;$emit('beforeUpload', file, model)}"
             />
             <UploadImg
               v-model="formData[item.model][scope.$index][column.model]"
@@ -231,8 +231,8 @@
               :headers="column.options.headers?column.options.headers:{}"
               :data="column.options.data?column.options.data:{}"
               :name="column.options.name?column.options.name:''"
-              @onSuccess="(response, file, fileList)=>{$emit('onSuccess',response, file, fileList)}"
-              @beforeUpload="(file)=>{$emit('beforeUpload', file)}"
+              @onSuccess="(response, file, fileList)=>{const model= column.model; $emit('onSuccess',response, file, fileList, model)}"
+              @beforeUpload="(file)=>{const model= column.model;$emit('beforeUpload', file, model)}"
             />
             <el-switch
               v-model="formData[item.model][scope.$index][column.model]"
@@ -299,8 +299,8 @@
               :formData="formData"
               :childTableColumns="childTableColumns"
               @clickFormButton="handleFormButton"
-              @onSuccess="(response, file, fileList)=>{$emit('onSuccess',response, file, fileList)}"
-              @beforeUpload="(file)=>{$emit('beforeUpload', file)}"
+              @onSuccess="(response, file, fileList)=>{const model= items.model; $emit('onSuccess',response, file, fileList, model)}"
+              @beforeUpload="(file)=>{const model= items.model;$emit('beforeUpload', file, model)}"
             />
           </div>
         </el-card>
@@ -459,8 +459,8 @@
           :headers="item.options.headers?item.options.headers:{}"
           :data="item.options.data?item.options.data:{}"
           :name="item.options.name?item.options.name:''"
-          @onSuccess="(response, file, fileList)=>{$emit('onSuccess',response, file, fileList)}"
-          @beforeUpload="(file)=>{$emit('beforeUpload', file)}"
+          @onSuccess="(response, file, fileList)=>{const model= item.model; $emit('onSuccess',response, file, fileList, model)}"
+          @beforeUpload="(file)=>{const model= item.model;$emit('beforeUpload', file, model)}"
         />
         <UploadImg
           ref="b"
@@ -475,8 +475,8 @@
           :headers="item.options.headers?item.options.headers:{}"
           :data="item.options.data?item.options.data:{}"
           :name="item.options.name?item.options.name:''"
-          @onSuccess="(response, file, fileList)=>{$emit('onSuccess',response, file, fileList)}"
-          @beforeUpload="(file)=>{$emit('beforeUpload', file)}"
+          @onSuccess="(response, file, fileList)=>{const model= item.model; $emit('onSuccess',response, file, fileList, model)}"
+          @beforeUpload="(file)=>{const model= item.model;$emit('beforeUpload', file, model)}"
         />
         <div
           v-if="item.type === 'super'"
